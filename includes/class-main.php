@@ -40,10 +40,11 @@ class Main {
 	 * The constructor for the class.
 	 */
 	private function __construct() {
+		$this->define_constants();
+
 		$this->public = new Plugin_Public();
 		$this->admin  = new Plugin_Admin();
 
-		$this->define_constants();
 		$this->define_hooks();
 	}
 
@@ -87,5 +88,6 @@ class Main {
 		add_action( 'storefront_loop_before', array( $this->public, 'add_slider_to_home' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->public, 'enqueue_assets' ) );
 		add_action( 'admin_enqueue_scripts', array( $this->admin, 'enqueue_assets' ) );
+		add_action( 'admin_init', array( $this->admin, 'init_settings' ) );
 	}
 }

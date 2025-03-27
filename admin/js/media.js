@@ -4,8 +4,7 @@ jQuery(function ($) {
             if ( typeof wp !== 'undefined' && wp.media && wp.media.editor) {
                 $('.set_custom_images').on('click', function(e) {
                     e.preventDefault();
-                    var button = $(this);
-                    var ids = button.prev();
+                    var ids = $('input[type="hidden"][name="prixz-modules-slider-image-ids"]');
 
 
                     var custom_uploader = wp.media({
@@ -18,16 +17,15 @@ jQuery(function ($) {
 
                     custom_uploader.on('select', function() {
                         var attachments = custom_uploader.state().get('selection').toJSON();
-                        var attachmentIds = [];
+                        var attachment_ids = [];
+                        var image_prev = $('#slider_images_preview');
 
                         $.each(attachments, function(index, attachment) {
-                            attachmentIds.push(attachment.id);
+                            attachment_ids.push(attachment.id);
+                            image_prev.append('<div class="slider_image"><img src="' + attachment.sizes.thumbnail.url + '" alt="" /></div>');
                         });
 
-                        console.log(JSON.stringify(attachments));
-                        console.log(JSON.stringify(attachmentIds));
-
-                        ids.val(JSON.stringify(attachmentIds));
+                        ids.val(JSON.stringify(attachment_ids));
                     });
 
                     custom_uploader.open();

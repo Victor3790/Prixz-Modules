@@ -16,6 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Plugin_Public {
 	/**
+	 * The constructor for the class.
+	 */
+	public function __construct() {
+		require_once namespace\PATH . 'includes/class-slider.php';
+	}
+	/**
 	 * Add styles and scripts
 	 */
 	public function enqueue_assets() {

@@ -7,6 +7,8 @@
 
 namespace PrixzModules;
 
+use Vk_custom_libs\Settings;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
@@ -15,6 +17,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The admin class for the plugin.
  */
 class Plugin_Admin {
+
+	/**
+	 * The constructor for the class.
+	 */
+	public function __construct() {
+		require_once namespace\PATH . 'includes/class-settings.php';
+	}
+
 	/**
 	 * Add the admin pages.
 	 */
@@ -60,11 +70,34 @@ class Plugin_Admin {
 			<h1><?php esc_html_e( 'Prixz Modules Slider', 'prixz-modules' ); ?></h1>
 			<p><?php esc_html_e( 'This is the slider page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
 			<p>
-				<input type="text" value="" class="regular-text process_custom_images" id="process_custom_images" name="">
 				<button class="set_custom_images button">Set Slider Images</button>
 			</p>
+			<div id="slider_images_preview"></div>
+			<form action="options.php" method="post">
+				<?php
+					settings_fields( 'prixz-modules-slider-group' );
+					do_settings_sections( 'prixz-modules-slider' );
+					submit_button();
+				?>
+			</form>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Add the settings sections and fields to the admin view.
+	 */
+	public function init_settings() {
+		$settings_sections = array(
+			'prixz-modules-slider-settings-section' => array(
+				'settings' => array(
+					'prixz-modules-slider-image-ids' => array( 'field_type' => 'hidden' ),
+				),
+			),
+		);
+
+		$settings = new Settings( 'prixz-modules-slider', 'prixz-modules-slider-group' );
+		$settings->add_settings_sections( $settings_sections );
 	}
 
 	/**

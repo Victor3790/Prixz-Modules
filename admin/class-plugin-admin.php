@@ -60,8 +60,8 @@ class Plugin_Admin {
 			<h1><?php esc_html_e( 'Prixz Modules Slider', 'prixz-modules' ); ?></h1>
 			<p><?php esc_html_e( 'This is the slider page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
 			<p>
-				<input type="number" value="" class="regular-text process_custom_images" id="process_custom_images" name="" max="" min="1" step="1">
-				<button class="set_custom_images button">Set Image ID</button>
+				<input type="text" value="" class="regular-text process_custom_images" id="process_custom_images" name="">
+				<button class="set_custom_images button">Set Slider Images</button>
 			</p>
 		</div>
 		<?php

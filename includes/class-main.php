@@ -86,5 +86,6 @@ class Main {
 		 */
 		add_action( 'storefront_loop_before', array( $this->public, 'add_slider_to_home' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->public, 'enqueue_assets' ) );
+		add_action( 'admin_enqueue_scripts', array( $this->admin, 'enqueue_assets' ) );
 	}
 }

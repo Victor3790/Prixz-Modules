@@ -35,7 +35,7 @@ class Plugin_Admin {
 			'Slider',
 			'manage_options',
 			'prixz-modules-slider',
-			array( $this, 'admin_page' )
+			array( $this, 'slider_page' )
 		);
 	}
 
@@ -49,5 +49,36 @@ class Plugin_Admin {
 			<p><?php esc_html_e( 'This is the admin page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
 		</div>
 		<?php
+	}
+
+	/**
+	 * The Slider submenu page.
+	 */
+	public function slider_page() {
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Prixz Modules Slider', 'prixz-modules' ); ?></h1>
+			<p><?php esc_html_e( 'This is the slider page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
+			<p>
+				<input type="number" value="" class="regular-text process_custom_images" id="process_custom_images" name="" max="" min="1" step="1">
+				<button class="set_custom_images button">Set Image ID</button>
+			</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Enqueue the admin styles and scripts.
+	 */
+	public function enqueue_assets() {
+		wp_enqueue_media();
+
+		wp_enqueue_script(
+			'admin-media',
+			namespace\URL . 'admin/js/media.js',
+			array( 'jquery' ),
+			namespace\VERSION,
+			true
+		);
 	}
 }

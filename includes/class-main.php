@@ -23,6 +23,13 @@ class Main {
 	private static $instance = null;
 
 	/**
+	 * The plugin public object.
+	 *
+	 * @var Plugin_Public
+	 */
+	private $public;
+
+	/**
 	 * The slider module.
 	 *
 	 * @var Slider
@@ -33,6 +40,8 @@ class Main {
 	 * The constructor for the class.
 	 */
 	private function __construct() {
+		$this->public = new Plugin_Public();
+
 		$this->define_constants();
 		$this->define_hooks();
 	}
@@ -81,7 +90,7 @@ class Main {
 		 * at another location or through a shortcode with further changes.
 		 */
 		add_action( 'storefront_loop_before', array( $this, 'add_slider_to_home' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this->public, 'enqueue_assets' ) );
 	}
 
 	/**
@@ -128,44 +137,5 @@ class Main {
 			return;
 		}
 		$this->slider_module->add_slider();
-	}
-
-	/**
-	 * Add styles and scripts
-	 */
-	public function enqueue_assets() {
-		// Slider.
-		wp_enqueue_style(
-			'swiper',
-			namespace\URL . 'assets/swiper/swiper-bundle.min.css',
-			array(),
-			'11.2.6'
-		);
-
-		wp_enqueue_script(
-			'swiper',
-			namespace\URL . 'assets/swiper/swiper-bundle.min.js',
-			array(),
-			'11.2.6',
-			true
-		);
-
-		wp_enqueue_script(
-			'slider',
-			namespace\URL . 'assets/slider.js',
-			array(
-				'jquery',
-				'swiper',
-			),
-			namespace\VERSION,
-			true
-		);
-
-		wp_enqueue_style(
-			'slider',
-			namespace\URL . 'assets/slider.css',
-			array(),
-			namespace\VERSION
-		);
 	}
 }

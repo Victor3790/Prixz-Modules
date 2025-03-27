@@ -19,6 +19,7 @@ if ( ! defined( 'PRIXZ_MODULES_PLUGIN_FILE' ) ) {
 }
 
 require_once 'includes/class-main.php';
+require_once 'public/class-plugin-public.php';
 require_once 'includes/class-slider.php';
 
 $prixz_modules = PrixzModules\Main::get_instance();

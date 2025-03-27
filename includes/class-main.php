@@ -30,17 +30,18 @@ class Main {
 	private $public;
 
 	/**
-	 * The slider module.
+	 * The plugin admin object.
 	 *
-	 * @var Slider
+	 * @var Plugin_Admin
 	 */
-	private $slider_module;
+	private $admin;
 
 	/**
 	 * The constructor for the class.
 	 */
 	private function __construct() {
 		$this->public = new Plugin_Public();
+		$this->admin  = new Plugin_Admin();
 
 		$this->define_constants();
 		$this->define_hooks();
@@ -79,63 +80,11 @@ class Main {
 	 * Add hooks here.
 	 */
 	private function define_hooks() {
-		add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
+		add_action( 'admin_menu', array( $this->admin, 'add_admin_pages' ) );
 		/**
 		 * These are the slider module hooks.
 		 */
-		$this->slider_module = new Slider();
-		/**
-		 * So far the plugin is only adding the slider to the home page of the Storefront theme
-		 * if the homepage displays the latest posts, but this can be modified to add a slider
-		 * at another location or through a shortcode with further changes.
-		 */
-		add_action( 'storefront_loop_before', array( $this, 'add_slider_to_home' ) );
+		add_action( 'storefront_loop_before', array( $this->public, 'add_slider_to_home' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->public, 'enqueue_assets' ) );
-	}
-
-	/**
-	 * Add the admin pages.
-	 */
-	public function add_admin_pages() {
-		add_menu_page(
-			'Prixz Modules',
-			'Prixz Modules',
-			'manage_options',
-			'prixz-modules',
-			array( $this, 'admin_page' ),
-			'dashicons-admin-generic',
-			100
-		);
-
-		add_submenu_page(
-			'prixz-modules',
-			'Prixz Modules Slider',
-			'Slider',
-			'manage_options',
-			'prixz-modules-slider',
-			array( $this, 'admin_page' )
-		);
-	}
-
-	/**
-	 * The admin page.
-	 */
-	public function admin_page() {
-		?>
-		<div class="wrap">
-			<h1><?php esc_html_e( 'Prixz Modules', 'prixz-modules' ); ?></h1>
-			<p><?php esc_html_e( 'This is the admin page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Add the slider to the home page.
-	 */
-	public function add_slider_to_home() {
-		if ( ! is_front_page() ) {
-			return;
-		}
-		$this->slider_module->add_slider();
 	}
 }

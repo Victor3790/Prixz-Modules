@@ -53,4 +53,18 @@ class Plugin_Public {
 			namespace\VERSION
 		);
 	}
+
+	/**
+	 * So far the plugin is only adding the slider to the home page of the Storefront theme
+	 * if the homepage displays the latest posts, but this can be modified to add a slider
+	 * at another location or through a shortcode with further changes.
+	 */
+	public function add_slider_to_home() {
+		if ( ! is_front_page() ) {
+			return;
+		}
+
+		$slider_module = new Slider();
+		$slider_module->add_slider();
+	}
 }

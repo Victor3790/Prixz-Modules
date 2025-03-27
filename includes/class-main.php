@@ -70,6 +70,7 @@ class Main {
 	 * Add hooks here.
 	 */
 	private function define_hooks() {
+		add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
 		/**
 		 * These are the slider module hooks.
 		 */
@@ -81,6 +82,42 @@ class Main {
 		 */
 		add_action( 'storefront_loop_before', array( $this, 'add_slider_to_home' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+	}
+
+	/**
+	 * Add the admin pages.
+	 */
+	public function add_admin_pages() {
+		add_menu_page(
+			'Prixz Modules',
+			'Prixz Modules',
+			'manage_options',
+			'prixz-modules',
+			array( $this, 'admin_page' ),
+			'dashicons-admin-generic',
+			100
+		);
+
+		add_submenu_page(
+			'prixz-modules',
+			'Prixz Modules Slider',
+			'Slider',
+			'manage_options',
+			'prixz-modules-slider',
+			array( $this, 'admin_page' )
+		);
+	}
+
+	/**
+	 * The admin page.
+	 */
+	public function admin_page() {
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Prixz Modules', 'prixz-modules' ); ?></h1>
+			<p><?php esc_html_e( 'This is the admin page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
+		</div>
+		<?php
 	}
 
 	/**

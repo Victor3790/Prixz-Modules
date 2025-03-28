@@ -68,7 +68,7 @@ class Plugin_Admin {
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Prixz Modules Slider', 'prixz-modules' ); ?></h1>
-			<p><?php esc_html_e( 'This is the slider page for the Prixz Modules plugin.', 'prixz-modules' ); ?></p>
+			<p><?php esc_html_e( 'Instructions: Set some slider images, make sure the file names of the images do not have dashes, slashes or any special character.', 'prixz-modules' ); ?></p>
 			<p>
 				<button class="set_custom_images button">Set Slider Images</button>
 			</p>
@@ -112,6 +112,13 @@ class Plugin_Admin {
 			array( 'jquery' ),
 			namespace\VERSION,
 			true
+		);
+
+		wp_enqueue_style(
+			'admin-media',
+			namespace\URL . 'admin/css/media.css',
+			array(),
+			namespace\VERSION
 		);
 	}
 }

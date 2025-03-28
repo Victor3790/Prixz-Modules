@@ -35,7 +35,6 @@ jQuery(function ($) {
                     e.preventDefault();
                     var ids = $('input[type="hidden"][name="prixz-modules-slider-image-ids"]');
 
-
                     var custom_uploader = wp.media({
                         title: 'Select images for the slider',
                         button: {
@@ -45,6 +44,7 @@ jQuery(function ($) {
                     });
 
                     custom_uploader.on('select', function() {
+                        $('#slider_images_preview').empty();
                         var attachments = custom_uploader.state().get('selection').toJSON();
                         var attachment_ids = [];
                         var image_prev = $('#slider_images_preview');

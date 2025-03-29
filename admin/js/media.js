@@ -1,9 +1,9 @@
 jQuery(function ($) {
     $( document ).ready(function() {
         // Handle first time loading.
-        var sliderImageIds = $('input[type="hidden"][name="prixz-modules-slider-image-ids"]').val();
-        if (sliderImageIds !== "" && sliderImageIds !== "[]") {
-            var ids = JSON.parse(sliderImageIds);
+        var slider_image_ids = $('input[type="hidden"][name="prixz-modules-slider-image-ids"]').val();
+        if (slider_image_ids !== "" && slider_image_ids !== "[]") {
+            var ids = JSON.parse(slider_image_ids);
             var image_prev = $('#slider_images_preview');
             
             $.each(ids, function(index, id) {

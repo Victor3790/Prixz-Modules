@@ -14,7 +14,7 @@ jQuery(function ($) {
                 * that returns the thumbnail URL based on the ID.
                 */
                 $.ajax({
-                    url: wpApiSettings.root + 'wp/v2/media/' + id,
+                    url: wpApiSettings.root + wpApiSettings.versionString + 'media/' + id,
                     type: 'GET',
                     dataType: 'json',
                     async: false,

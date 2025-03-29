@@ -68,7 +68,7 @@ class Plugin_Admin {
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Prixz Modules Slider', 'prixz-modules' ); ?></h1>
-			<p><?php esc_html_e( 'Instructions: Set some slider images, make sure the file names of the images do not have dashes, slashes or any special character.', 'prixz-modules' ); ?></p>
+			<p><?php esc_html_e( 'Instructions: Set some slider images.', 'prixz-modules' ); ?></p>
 			<p>
 				<button class="set_custom_images button">Set Slider Images</button>
 			</p>

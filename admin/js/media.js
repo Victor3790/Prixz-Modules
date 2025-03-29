@@ -7,10 +7,10 @@ jQuery(function ($) {
             var image_prev = $('#slider_images_preview');
             
             $.each(ids, function(index, id) {
-                /* This might not work properly if the file name has special characters, slashes, etc.
+                /* This might not work properly in some cases.
                 * @see https://core.trac.wordpress.org/ticket/41445
                 * @see https://github.com/WP-API/WP-API/issues/2596
-                * @todo: Fix this issue. A workaround might be to add a new endpoint to the REST API
+                * @todo: Perform some manual testing. A workaround might be to add a new endpoint to the REST API
                 * that returns the thumbnail URL based on the ID.
                 */
                 $.ajax({

@@ -199,8 +199,8 @@ class Plugin_Admin {
 				'const PRIXZ_MODULES_PRODUCTS_DATA = ' .
 					wp_json_encode(
 						array(
-							'ajax_url'          => admin_url( 'admin-ajax.php' ),
-							'nonce'             => wp_create_nonce( 'search-products' ),
+							'ajax_url' => admin_url( 'admin-ajax.php' ),
+							'nonce'    => wp_create_nonce( 'search-products' ),
 						)
 					),
 				'before'

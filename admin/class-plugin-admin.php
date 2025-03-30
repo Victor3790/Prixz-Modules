@@ -100,7 +100,7 @@ class Plugin_Admin {
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Prixz Modules Products', 'prixz-modules' ); ?></h1>
-			<p><?php esc_html_e( 'Instructions: Set some products for the carousel.', 'prixz-modules' ); ?></p>
+			<p><?php esc_html_e( 'Instructions: Select at least four products for the carousel.', 'prixz-modules' ); ?></p>
 			<div id="slider_images_preview"></div>
 			<select id="prixz-product-search-bar"></select>
 			<form action="options.php" method="post">

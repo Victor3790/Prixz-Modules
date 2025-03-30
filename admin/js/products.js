@@ -1,5 +1,12 @@
 jQuery(function ($) {
     $( document ).ready(function() {
+        var product_data = JSON.parse($('input[type="hidden"][name="prixz-modules-products-ids"]').val());
+
+        // Disable the submit button.
+        if (product_data.length < 4) {
+          $('#submit').prop('disabled', true);
+        }
+
         /**
          * This Select2 field can be sortable
          * Possible workaround:
@@ -40,10 +47,7 @@ jQuery(function ($) {
         });
 
         // Fill up the product search bar with the selected products on load if any
-        var products = $('input[type="hidden"][name="prixz-modules-products-ids"]').val();
-        if (products !== "" && products !== "[]") {
-            var product_data = JSON.parse(products);
-
+        if (product_data.length > 0) {
             $.each( product_data, function( index, data ) {
                 var newOption = new Option(data.text, data.id, true, true);
                 $('select#prixz-product-search-bar').append(newOption);
@@ -60,6 +64,13 @@ jQuery(function ($) {
             });
 
             product_data_field.val(JSON.stringify(product_data));
+
+            // Disable / enable the submit button.
+            if (product_data.length < 4) {
+              $('#submit').prop('disabled', true);
+            } else {
+              $('#submit').prop('disabled', false);
+            }
         });
     });
 });

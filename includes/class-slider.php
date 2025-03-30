@@ -27,7 +27,7 @@ class Slider {
 		}
 		?>
 			<!-- Slider main container -->
-			<div class="swiper">
+			<div id="home-page-slider" class="swiper">
 				<!-- Additional required wrapper -->
 				<div class="swiper-wrapper">
 					<!-- Slides -->

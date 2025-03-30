@@ -1,9 +1,10 @@
 jQuery(function ($) {
     $( document ).ready(function() {
-        const swiper = new Swiper('.swiper', {
+        const slider = new Swiper('#home-page-slider', {
             // Optional parameters
             direction: 'horizontal',
             loop: true,
+            autoplay: true,
           
             // If we need pagination
             pagination: {

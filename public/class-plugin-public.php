@@ -20,12 +20,12 @@ class Plugin_Public {
 	 */
 	public function __construct() {
 		require_once namespace\PATH . 'includes/class-slider.php';
+		require_once namespace\PATH . 'includes/class-product-carousel.php';
 	}
 	/**
 	 * Add styles and scripts
 	 */
 	public function enqueue_assets() {
-		// Slider.
 		wp_enqueue_style(
 			'swiper',
 			namespace\URL . 'public/css/swiper-bundle.min.css',
@@ -41,6 +41,7 @@ class Plugin_Public {
 			true
 		);
 
+		// Slider.
 		wp_enqueue_script(
 			'slider',
 			namespace\URL . 'public/js/slider.js',
@@ -57,6 +58,18 @@ class Plugin_Public {
 			namespace\URL . 'public/css/slider.css',
 			array(),
 			namespace\VERSION
+		);
+
+		// Carousel.
+		wp_enqueue_script(
+			'carousel',
+			namespace\URL . 'public/js/carousel.js',
+			array(
+				'jquery',
+				'swiper',
+			),
+			namespace\VERSION,
+			true
 		);
 	}
 
@@ -80,5 +93,25 @@ class Plugin_Public {
 		$images = $slider_module->get_media( $image_ids );
 
 		$slider_module->add_slider( $images );
+	}
+
+	/**
+	 * Add the product carousel to the home page.
+	 */
+	public function add_product_carousel_to_home() {
+		if ( ! is_front_page() ) {
+			return;
+		}
+
+		$product_data = json_decode( get_option( 'prixz-modules-products-ids' ) );
+		if ( empty( $product_data ) ) {
+			return;
+		}
+
+		$ids        = array_column( $product_data, 'id' );
+		$string_ids = implode( ',', $ids );
+
+		$product_carousel_module = new Product_Carousel();
+		$product_carousel_module->add_carousel( $string_ids );
 	}
 }

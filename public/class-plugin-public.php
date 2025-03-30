@@ -70,7 +70,15 @@ class Plugin_Public {
 			return;
 		}
 
+		$image_ids = json_decode( get_option( 'prixz-modules-slider-image-ids' ) );
+		if ( empty( $image_ids ) ) {
+			return;
+		}
+
 		$slider_module = new Slider();
-		$slider_module->add_slider();
+
+		$images = $slider_module->get_media( $image_ids );
+
+		$slider_module->add_slider( $images );
 	}
 }

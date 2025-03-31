@@ -1,5 +1,8 @@
 jQuery(function ($) {
     $( document ).ready(function() {
+        if($('input[type="hidden"][name="prixz-modules-products-ids"]').val() === '') {
+          $('input[type="hidden"][name="prixz-modules-products-ids"]').val('[]');
+        }
         var product_data = JSON.parse($('input[type="hidden"][name="prixz-modules-products-ids"]').val());
 
         // Disable the submit button.
